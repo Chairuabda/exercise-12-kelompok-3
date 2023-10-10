@@ -13,7 +13,7 @@ const tweetScheme = Yup.object().shape({
 export const Home = () => {
 	const [allTweet, setAllTweets] = useState([]);
 	const [allUser, setAllUser] = useState([]);
-	const [date, setDates] = useState("")
+	const [date, setDates] = useState("");
 
 	const tweets = async (tweet, time) => {
 		try {
@@ -26,12 +26,12 @@ export const Home = () => {
 			console.log(err);
 		}
 	};
-	
+
 	const time = () => {
 		const time = new Date();
-		const fromatedTime = time.toLocaleString()
-		setDates(fromatedTime)
-	}
+		const fromatedTime = time.toLocaleString();
+		setDates(fromatedTime);
+	};
 
 	const fatchData = async () => {
 		try {
@@ -43,6 +43,7 @@ export const Home = () => {
 			);
 			setAllTweets(responseTweet.data);
 			setAllUser(responseUser.data);
+			time();
 		} catch (err) {
 			console.log(err);
 		}
@@ -60,7 +61,6 @@ export const Home = () => {
 		},
 		validationSchema: tweetScheme,
 		onSubmit: (values) => {
-			time()
 			tweets(values.tweet, date);
 		},
 	});
@@ -194,7 +194,7 @@ export const Home = () => {
 												</Box>
 											</Box>
 										);
-									})
+									}).reverse()
 								) : (
 									<Box>
 										<Text>
