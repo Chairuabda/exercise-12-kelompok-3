@@ -54,8 +54,24 @@ export const Register = () => {
 	});
 
 	return (
-		<Box>
-			<Box bgColor="white" p="50px" borderRadius="10px" color="black" w="200px">
+		<Box
+			display={"flex"}
+			w={"100vw"}
+			justifyContent={"center"}
+			alignItems={"center"}
+			minH={"100vh"}
+		>
+			<Box
+				display={"flex"}
+				flexDirection={"column"}
+				justifyContent={"center"}
+				alignItems={"center"}
+				bgColor="#eff0f3"
+				p="30px 50px"
+				borderRadius="10px"
+				color="black"
+				w="300px"
+			>
 				<form onSubmit={formikRegister.handleSubmit}>
 					<Text fontSize="20px">Register</Text>
 					<FormControl
@@ -133,17 +149,21 @@ export const Register = () => {
 								</FormErrorMessage>
 							)}
 					</FormControl>
-					<Button
-						type="submit"
-						mt="30px"
-						p="6px 20px"
-						textAlign="center"
-						fontSize="16px"
-					>
-						Register
-					</Button>
+					<Box display={"flex"} justifyContent={"center"}>
+						<Button
+							type="submit"
+							mt="30px"
+							p="6px 20px"
+							textAlign="center"
+							fontSize="16px"
+							justifyContent={"center"}
+							bgColor={"blue.300"}
+						>
+							Register
+						</Button>
+					</Box>
 				</form>
-				<Box>
+				<Box mt={"20px"}>
 					<Text>
 						Sudah Punya Akun <Link to="/">Login</Link>
 					</Text>
