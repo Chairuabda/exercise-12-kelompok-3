@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "username": "Tengku Chairu Abda",
+      "email": "abda@gmail.com",
+      "password": "chairuabda",
+      "id": 1
+    },
+    {
+      "username": "abda",
+      "email": "chairu@gmail.com",
+      "password": "abdaabda",
+      "id": 2
+    }
+  ]
+}
