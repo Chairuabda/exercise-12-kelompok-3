@@ -1,0 +1,20 @@
+{
+  "tweet": [
+    {
+      "tweet": "postingan 1",
+      "id": 1
+    },
+    {
+      "tweet": "postingan 2",
+      "id": 2
+    },
+    {
+      "tweet": "postingan 3",
+      "id": 3
+    },
+    {
+      "tweet": "postingan 4",
+      "id": 4
+    }
+  ]
+}
