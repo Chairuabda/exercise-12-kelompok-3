@@ -69,6 +69,8 @@ export const MidSection = () => {
 			borderRadius={"10px"}
 			position={"relative"}
 			left={"-90"}
+            mb={"30px"}
+            pb={"50px"}
 		>
 			<Box
 				display={"flex"}
