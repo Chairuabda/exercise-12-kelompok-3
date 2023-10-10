@@ -17,6 +17,12 @@
       "email": "putu@gmail.com",
       "password": "putuputu",
       "id": 3
+    },
+    {
+      "username": "fariz",
+      "email": "fariz@gmail.com",
+      "password": "farizfariz",
+      "id": 4
     }
   ]
 }

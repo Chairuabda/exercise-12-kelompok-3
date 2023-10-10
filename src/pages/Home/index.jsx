@@ -1,10 +1,10 @@
-import { Button, Input } from "@chakra-ui/react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Button, Input } from "@chakra-ui/react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { SideNavbar } from "../components/SideNavbar";
+import { UserBar } from "../components/UserBar";
 import { Image, Microphone, MapPin } from "@phosphor-icons/react";
 
 const tweetScheme = Yup.object().shape({
@@ -13,7 +13,6 @@ const tweetScheme = Yup.object().shape({
 
 export const Home = () => {
 	const [allTweet, setAllTweets] = useState([]);
-	const [allUser, setAllUser] = useState([]);
 	const [date, setDates] = useState("");
 
 	const tweets = async (tweet, time) => {
@@ -39,11 +38,7 @@ export const Home = () => {
 			const responseTweet = await axios.get(
 				"http://localhost:8000/tweet"
 			);
-			const responseUser = await axios.get(
-				"http://localhost:3000/user"
-			);
 			setAllTweets(responseTweet.data);
-			setAllUser(responseUser.data);
 			time();
 		} catch (err) {
 			console.log(err);
@@ -88,9 +83,12 @@ export const Home = () => {
 					justifyContent="space-between"
 					h={"50px"}
 					alignItems={"center"}
+					position={"fixed"}
+					left={"200"}
+					right={"200"}
 				>
 					<Box>Logo</Box>
-					<Box>Username</Box>
+					<Box border={"1px solid black"} p={"2px 18px"} borderRadius={"20px"}>Username</Box>
 				</Box>
 
 				<Box
@@ -98,6 +96,7 @@ export const Home = () => {
 					w="100%"
 					justifyContent={"center"}
 					minH={"100vh"}
+					mt={"50px"}
 				>
 					<SideNavbar />
 
@@ -213,62 +212,7 @@ export const Home = () => {
 						</Box>
 					</Box>
 
-					{/* right section */}
-					<Box
-						w={"25%"}
-						minH={"100vh"}
-						display={"flex"}
-						justifyContent={"start"}
-						position={"fixed"}
-						right={"145"}
-						overflow={"hidden"}
-					>
-						<Box
-							display={"flex"}
-							flexDirection={"column"}
-							h={"fit-content"}
-							justifyContent={"center"}
-							bgColor={"white"}
-							borderRadius={"20px"}
-							w={"90%"}
-							alignItems={"center"}
-						>
-							<Box m={"20px 0"}>
-								<Text fontSize={"22px"} mb={"0"}>
-									Who to follow
-								</Text>
-							</Box>
-
-							{allUser?.length > 0 ? (
-								allUser.map((user, index) => {
-									return (
-										<Box
-											bgColor={"#eff0f3"}
-											p={"10px"}
-											w={"75%"}
-											borderRadius={"5px"}
-											color={"black"}
-											m={"2px"}
-											key={index}
-										>
-											<Text m={"0"}>{user.username}</Text>
-										</Box>
-									);
-								})
-							) : (
-								<></>
-							)}
-							<Box color={"black"} m={"20px"} fontSize={"12px"}>
-								<Button
-									variant={"link"}
-									border={"none"}
-									_focus={{ border: "none", outline: "none" }}
-								>
-									see more
-								</Button>
-							</Box>
-						</Box>
-					</Box>
+					<UserBar />
 				</Box>
 			</Box>
 		</Box>
