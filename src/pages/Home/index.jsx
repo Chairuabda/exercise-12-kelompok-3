@@ -7,23 +7,31 @@ import * as Yup from "yup";
 import { useEffect, useState } from "react";
 
 const tweetScheme = Yup.object().shape({
-	tweet: Yup.string(),
+	tweet: Yup.string().required(),
 });
 
 export const Home = () => {
-	const [allTweet, setAllTweets] = useState("");
-	const [allUser, setAllUser] = useState("");
+	const [allTweet, setAllTweets] = useState([]);
+	const [allUser, setAllUser] = useState([]);
+	const [date, setDates] = useState("")
 
-	const tweets = async (tweet) => {
+	const tweets = async (tweet, time) => {
 		try {
 			await axios.post("http://localhost:8000/tweet", {
 				// username,
 				tweet,
+				time,
 			});
 		} catch (err) {
 			console.log(err);
 		}
 	};
+	
+	const time = () => {
+		const time = new Date();
+		const fromatedTime = time.toLocaleString()
+		setDates(fromatedTime)
+	}
 
 	const fatchData = async () => {
 		try {
@@ -42,16 +50,18 @@ export const Home = () => {
 
 	useEffect(() => {
 		fatchData();
-	}, []);
+	}, [allTweet]);
 
 	const formikTweet = useFormik({
 		initialValues: {
 			// username: "",
 			tweet: "",
+			time: "",
 		},
 		validationSchema: tweetScheme,
 		onSubmit: (values) => {
-			tweets(values.tweet);
+			time()
+			tweets(values.tweet, date);
 		},
 	});
 
@@ -177,6 +187,7 @@ export const Home = () => {
 											<Box key={index}>
 												<Box>
 													<Text>username</Text>
+													<Text>{items.time}</Text>
 												</Box>
 												<Box>
 													<Text>{items.tweet}</Text>
