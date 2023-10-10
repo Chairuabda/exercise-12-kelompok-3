@@ -1,24 +1,44 @@
 {
   "tweet": [
     {
-      "tweet": "posting 1",
-      "time": "10/10/2023, 22.08.03",
+      "tweet": "postingan 1",
+      "time": "10/10/2023, 22.14.25",
       "id": 1
     },
     {
-      "tweet": "posting 2",
-      "time": "10/10/2023, 22.08.10",
+      "tweet": "postingan 2",
+      "time": "10/10/2023, 22.14.28",
       "id": 2
     },
     {
-      "tweet": "posting 3",
-      "time": "10/10/2023, 22.08.14",
+      "tweet": "postingan 3",
+      "time": "10/10/2023, 22.55.18",
       "id": 3
     },
     {
       "tweet": "postingan 4",
-      "time": "10/10/2023, 22.08.50",
+      "time": "10/10/2023, 22.55.22",
       "id": 4
+    },
+    {
+      "tweet": "postingan 5",
+      "time": "10/10/2023, 22.55.27",
+      "id": 5
+    },
+    {
+      "tweet": "postingan 6",
+      "time": "10/10/2023, 22.55.37",
+      "id": 6
+    },
+    {
+      "tweet": "postingan 7",
+      "time": "10/10/2023, 22.55.58",
+      "id": 7
+    },
+    {
+      "tweet": "BREAKING!!  Ada klarifikasi dan permintaan maaf dari Steven Kurniawan aka Marsha Ozawa. Meskipun actingnya cukup bagus dan memelas tapi maaf kami tidak percaya dgn orang ini. Sebab bukti2 dia endorse judi online sudah sangat kuat.",
+      "time": "10/10/2023, 22.56.48",
+      "id": 8
     }
   ]
 }

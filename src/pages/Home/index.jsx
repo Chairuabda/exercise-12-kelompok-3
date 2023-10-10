@@ -1,10 +1,11 @@
 import { Button, Input } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { Box, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
+import { SideNavbar } from "../components/SideNavbar";
+import { Image, Microphone, MapPin } from "@phosphor-icons/react";
 
 const tweetScheme = Yup.object().shape({
 	tweet: Yup.string().required(),
@@ -62,6 +63,7 @@ export const Home = () => {
 		validationSchema: tweetScheme,
 		onSubmit: (values) => {
 			tweets(values.tweet, date);
+			formikTweet.values.tweet = "";
 		},
 	});
 
@@ -97,50 +99,7 @@ export const Home = () => {
 					justifyContent={"center"}
 					minH={"100vh"}
 				>
-					{/* left section */}
-					<Box
-						w={{ base: "20%", md: "15%" }}
-						display={"flex"}
-						justifyContent={"end"}
-						position={"fixed"}
-						left={"145"}
-						h={"90%"}
-					>
-						<Box
-							display="flex"
-							flexDirection={"column"}
-							textAlign={"start"}
-							w={"80%"}
-							h={"100%"}
-							justifyContent={"space-between"}
-						>
-							<Box display={"flex"} flexDirection={"column"}>
-								<Link>
-									<Text p={"10px"} mb={"5px"}>
-										Home
-									</Text>
-								</Link>
-								<Link>
-									<Text p={"10px"} mb={"5px"}>
-										Notification
-									</Text>
-								</Link>
-								<Link>
-									<Text p={"10px"} mb={"5px"}>
-										Messaged
-									</Text>
-								</Link>
-								<Link>
-									<Text p={"10px"} mb={"5px"}>
-										Profile
-									</Text>
-								</Link>
-							</Box>
-							<Link to="/">
-								<Button mt={"20px"}>Log Out</Button>
-							</Link>
-						</Box>
-					</Box>
+					<SideNavbar />
 
 					{/* mid section */}
 					<Box
@@ -165,36 +124,84 @@ export const Home = () => {
 								_active={{ border: "none", outline: "none" }}
 							>
 								<form onSubmit={formikTweet.handleSubmit}>
-									<Input
-										name="tweet"
-										value={formikTweet.values.tweet}
-										onChange={formikTweet.handleChange}
-										type="textarea"
-										variant={"unstyled"}
-										h={"80px"}
-										outlineColor={"transparent"}
-										fontSize={"20px"}
-										placeholder="What's happening?"
-									/>
-									<Button type="submit">Post</Button>
+									<Box
+										display={"flex"}
+										flexDirection={"column"}
+										alignItems={"end"}
+									>
+										<Input
+											name="tweet"
+											value={formikTweet.values.tweet}
+											onChange={formikTweet.handleChange}
+											type="textarea"
+											variant={"unstyled"}
+											h={"80px"}
+											outlineColor={"transparent"}
+											fontSize={"20px"}
+											placeholder="What's happening?"
+										/>
+
+										<Box
+											display={"flex"}
+											w={"95%"}
+											mb={"10px"}
+											justifyContent={"space-between"}
+											alignItems={"center"}
+										>
+											<Box display={"flex"}>
+												<Image size={26} />
+												<Box m={"0px 15px"}><Microphone size={26} /></Box>
+												<MapPin size={26} />
+											</Box>
+											<Button justifyContent={"end"} type="submit">
+												Posting
+											</Button>
+										</Box>
+									</Box>
 								</form>
 							</Box>
 
 							<Box w={"80%"} borderTop={"1px solid black"}>
 								{allTweet?.length > 0 ? (
-									allTweet.map((items, index) => {
-										return (
-											<Box key={index}>
-												<Box>
-													<Text>username</Text>
-													<Text>{items.time}</Text>
+									allTweet
+										.map((items, index) => {
+											return (
+												<Box
+													key={index}
+													borderRadius={"10px"}
+													mt={"10px"}
+													p={"10px 30px"}
+													boxShadow={"md"}
+												>
+													<Box
+														display={"flex"}
+														justifyContent={"start"}
+														alignItems={"center"}
+														h={"30px"}
+													>
+														<Text
+															alignItems={"center"}
+															fontWeight={"600"}
+														>
+															username
+														</Text>
+														<Text
+															fontSize={"10px"}
+															alignItems={"end"}
+															ml={"30px"}
+														>
+															{items.time}
+														</Text>
+													</Box>
+													<Box p={"20px"}>
+														<Text textAlign={"justify"}>
+															{items.tweet}
+														</Text>
+													</Box>
 												</Box>
-												<Box>
-													<Text>{items.tweet}</Text>
-												</Box>
-											</Box>
-										);
-									}).reverse()
+											);
+										})
+										.reverse()
 								) : (
 									<Box>
 										<Text>
