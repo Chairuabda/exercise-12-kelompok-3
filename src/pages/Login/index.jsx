@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-else-if */
 import {
 	Box,
 	Text,
@@ -36,21 +37,21 @@ export const Login = () => {
 	};
 
 	const allEmail = accounts.map((item) => item.email);
-	const allPassword = accounts.map((item) => item.password);
+
 	useEffect(() => {
 		fatchDataLogin();
 	}, []);
 
-	console.log(accounts);
+	// console.log(accounts);
 	const check = (email, password) => {
-		if (allEmail.includes(email) && allPassword.includes(password)) {
-			localStorage.setItem("akun", allEmail.indexOf(email))
-			Navigate("/home");
-		} else if (
-			allEmail.includes(email) &&
-			!allPassword.includes(password)
-		) {
-			alert("Password salah");
+		if (allEmail.includes(email)) {
+			const newEmail = accounts[allEmail.indexOf(email)];
+			if (newEmail.password.includes(password)) {
+				localStorage.setItem("akun", allEmail.indexOf(email));
+				Navigate("/home");
+			} else {
+				alert("Password salah");
+			}
 		} else {
 			alert("Email Belum Terdaftar");
 		}
@@ -93,7 +94,11 @@ export const Login = () => {
 						justifyContent={"center"}
 						mb={"30px"}
 					>
-						<Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+						<Box
+							display={"flex"}
+							justifyContent={"center"}
+							alignItems={"center"}
+						>
 							<Text fontSize="20px">Login</Text>
 						</Box>
 						<FormControl
@@ -112,7 +117,7 @@ export const Login = () => {
 								border="1px solid black"
 								h="30px"
 								color="black"
-                                pl={"5px"}
+								pl={"5px"}
 							/>
 						</FormControl>
 						<FormControl
@@ -131,7 +136,7 @@ export const Login = () => {
 								border="1px solid black"
 								h="30px"
 								color="black"
-                                pl={"5px"}
+								pl={"5px"}
 							/>
 						</FormControl>
 						<Box display={"flex"} justifyContent={"center"}>

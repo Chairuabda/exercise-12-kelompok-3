@@ -1,20 +1,17 @@
 import { Box, Text, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const UserBar = () => {
 	const [allUser, setAllUser] = useState([]);
-	const [myAccount, setMyAccount]= useState([])
-
-	const accountsIndex = localStorage.getItem("akun");
 
 	const fatchData = async () => {
 		try {
 			const responseUser = await axios.get(
 				"http://localhost:3000/user"
 			);
-			const user = responseUser.data
-			console.log(user)
+			const user = responseUser.data;
 			setAllUser(user);
 		} catch (err) {
 			console.log(err);
@@ -70,13 +67,15 @@ export const UserBar = () => {
 					<></>
 				)}
 				<Box color={"black"} m={"20px"} fontSize={"12px"}>
-					<Button
-						variant={"link"}
-						border={"none"}
-						_focus={{ border: "none", outline: "none" }}
-					>
-						see more
-					</Button>
+					<Link to="/profileuser">
+						<Button
+							variant={"link"}
+							border={"none"}
+							_focus={{ border: "none", outline: "none" }}
+						>
+							see more
+						</Button>
+					</Link>
 				</Box>
 			</Box>
 		</Box>

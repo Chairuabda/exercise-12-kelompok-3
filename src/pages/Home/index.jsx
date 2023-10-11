@@ -1,29 +1,12 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { SideNavbar } from "../components/SideNavbar";
 import { UserBar } from "../components/UserBar";
 import { MidSection } from "../components/MidSection";
-import Logo from "../../assets/BlackAbstract.png";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { TopBar } from "../components/TopBar";
 
 export const Home = () => {
 
-	const [myAccount, setMyAccount] = useState()
-
-	const accountsIndex = localStorage.getItem("akun")
-
-	const fatchUser = async () => {
-		try {
-			const responseUser = await axios.get("http://localhost:3000/user")
-			setMyAccount(responseUser.data[accountsIndex])
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
-	useEffect(() => {
-		fatchUser();
-	},[myAccount])
+	
  
 	return (
 		<Box
@@ -41,7 +24,7 @@ export const Home = () => {
 				w={"95%"}
 				m={"0px 200px"}
 			>
-				<Box
+				{/* <Box
 					display="flex"
 					justifyContent="space-between"
 					h={"50px"}
@@ -61,7 +44,8 @@ export const Home = () => {
 					>
 						{myAccount?.email}
 					</Box>
-				</Box>
+				</Box> */}
+				<TopBar/>
 
 				<Box
 					display="flex"
