@@ -73,99 +73,106 @@ export const Register = () => {
 				w="300px"
 			>
 				<form onSubmit={formikRegister.handleSubmit}>
-					<Text fontSize="20px">Register</Text>
-					<FormControl
-						display="flex"
-						flexDirection="column"
-						justifyContent="start"
+					<Box
+						display={"flex"}
+						flexDirection={"column"}
+						alignItems={"center"}
 					>
-						<FormLabel>Nama</FormLabel>
-						<Input
-							type="text"
-							name="username"
-							value={formikRegister.values.username}
-							onChange={formikRegister.handleChange}
-							borderRadius="5px"
-							bgColor="transparent"
-							border="1px solid black"
-							h="30px"
-							color="black"
-							pl={"5px"}
-						/>
-					</FormControl>
-					<FormControl
-						isInvalid={
-							formikRegister.touched.email &&
-							formikRegister.errors.email
-						}
-						display="flex"
-						flexDirection="column"
-						justifyContent="start"
-					>
-						<FormLabel>Email</FormLabel>
-						<Input
-							type="text"
-							name="email"
-							value={formikRegister.values.email}
-							onChange={formikRegister.handleChange}
-							borderRadius="5px"
-							bgColor="transparent"
-							border="1px solid black"
-							h="30px"
-							color="black"
-							pl={"5px"}
-						/>
-						{formikRegister.touched.email &&
-							formikRegister.errors.email && (
-								<FormErrorMessage>
-									{formikRegister.errors.email}
-								</FormErrorMessage>
-							)}
-					</FormControl>
-
-					<FormControl
-						isInvalid={
-							formikRegister.touched.password &&
-							formikRegister.errors.password
-						}
-						display="flex"
-						flexDirection="column"
-						justifyContent="start"
-					>
-						<FormLabel>Password</FormLabel>
-						<Input
-							type="password"
-							name="password"
-							value={formikRegister.values.password}
-							onChange={formikRegister.handleChange}
-							borderRadius="5px"
-							bgColor="transparent"
-							border="1px solid black"
-							h="30px"
-							color="black"
-							pl={"5px"}
-						/>
-						{formikRegister.touched.password &&
-							formikRegister.errors.password && (
-								<FormErrorMessage>
-									{formikRegister.errors.password}
-								</FormErrorMessage>
-							)}
-					</FormControl>
-					<Box display={"flex"} justifyContent={"center"}>
-						<Button
-							type="submit"
-							mt="30px"
-							p="6px 20px"
-							textAlign="center"
-							fontSize="16px"
-							justifyContent={"center"}
-							bgColor={"blue.300"}
+						<Text fontSize="20px">Register</Text>
+						<FormControl
+							display="flex"
+							flexDirection="column"
+							justifyContent="start"
 						>
-							Register
-						</Button>
+							<FormLabel>Nama</FormLabel>
+							<Input
+								type="text"
+								name="username"
+								value={formikRegister.values.username}
+								onChange={formikRegister.handleChange}
+								borderRadius="5px"
+								bgColor="transparent"
+								border="1px solid black"
+								h="30px"
+								color="black"
+								pl={"5px"}
+							/>
+						</FormControl>
+						<FormControl
+							isInvalid={
+								formikRegister.touched.email &&
+								formikRegister.errors.email
+							}
+							display="flex"
+							flexDirection="column"
+							justifyContent="start"
+						>
+							<FormLabel>Email</FormLabel>
+							<Input
+								type="text"
+								name="email"
+								value={formikRegister.values.email}
+								onChange={formikRegister.handleChange}
+								borderRadius="5px"
+								bgColor="transparent"
+								border="1px solid black"
+								h="30px"
+								color="black"
+								pl={"5px"}
+							/>
+							{formikRegister.touched.email &&
+								formikRegister.errors.email && (
+									<FormErrorMessage>
+										{formikRegister.errors.email}
+									</FormErrorMessage>
+								)}
+						</FormControl>
+
+						<FormControl
+							isInvalid={
+								formikRegister.touched.password &&
+								formikRegister.errors.password
+							}
+							display="flex"
+							flexDirection="column"
+							justifyContent="start"
+						>
+							<FormLabel>Password</FormLabel>
+							<Input
+								type="password"
+								name="password"
+								value={formikRegister.values.password}
+								onChange={formikRegister.handleChange}
+								borderRadius="5px"
+								bgColor="transparent"
+								border="1px solid black"
+								h="30px"
+								color="black"
+								pl={"5px"}
+							/>
+							{formikRegister.touched.password &&
+								formikRegister.errors.password && (
+									<FormErrorMessage>
+										{formikRegister.errors.password}
+									</FormErrorMessage>
+								)}
+						</FormControl>
+						<Box display={"flex"} justifyContent={"center"}>
+							<Button
+								type="submit"
+								mt="30px"
+								p="6px 20px"
+								textAlign="center"
+								fontSize="16px"
+								justifyContent={"center"}
+								bgColor={"blue.300"}
+							>
+								Register
+							</Button>
+						</Box>
 					</Box>
 				</form>
+
 				<Box mt={"20px"}>
 					<Text>
 						Sudah Punya Akun <Link to="/">Login</Link>

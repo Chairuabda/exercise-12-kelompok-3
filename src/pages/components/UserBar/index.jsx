@@ -12,7 +12,6 @@ export const UserBar = () => {
 				"http://localhost:3000/user"
 			);
 			const user = responseUser.data;
-			console.log(user);
 			setAllUser(user);
 		} catch (err) {
 			console.log(err);
