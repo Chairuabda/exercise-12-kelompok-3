@@ -102,8 +102,8 @@ export const Login = () => {
 						justifyContent={"center"}
 						mb={"30px"}
 					>
-						<Box display={"flex"} direction={"row"} justifyContent={"center"} alignItems={"center"} mt={"3rem"}>
-							<Heading size='lg' direction={'row'}> <Image src='/src/assets/BlackAbstract.png'></Image> MySosmed</Heading>
+						<Box display={"flex"} direction={"row"} justifyContent={"center"} alignItems={"center"} mt={"3rem"} bgColor={"red"}>
+							<Heading size='lg'> <Image src='/src/assets/BlackAbstract.png'></Image> MySosmed</Heading>
 						</Box>
 						<FormControl
 							display="flex"
