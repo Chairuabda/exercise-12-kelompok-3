@@ -19,7 +19,7 @@ export const ProfileUser = () => {
 
 	useEffect(() => {
 		fatchData();
-	});
+	}, []);
 
 	return (
 		<Box
@@ -32,6 +32,18 @@ export const ProfileUser = () => {
 			<Box>
 				<Box>
 					<Text>Profile User</Text>
+                    {allUser?.length > 0 ? (
+                        allUser.map((user, index) => {
+                            return (
+                                <Box key={index}>
+                                    <ul>
+                                        <li>{user.username}</li>
+                                        <li>{user.email}</li>
+                                    </ul>
+                                </Box>
+                            )
+                        })
+                    ): (<></>)}
 				</Box>
 			</Box>
 		</Box>

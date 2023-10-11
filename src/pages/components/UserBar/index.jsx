@@ -13,7 +13,6 @@ export const UserBar = () => {
 			const responseUser = await axios.get(
 				"http://localhost:3000/user"
 			);
-			setMyAccount(responseUser.data[accountsIndex].username)
 			const user = responseUser.data
 			console.log(user)
 			setAllUser(user);
