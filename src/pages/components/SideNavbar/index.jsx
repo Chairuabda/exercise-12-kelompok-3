@@ -40,6 +40,11 @@ export const SideNavbar = () => {
 									Profile
 								</Text>
 							</Link>
+							<Link to="/profileuser">
+								<Text p={"10px"} mb={"5px"}>
+									Profile User
+								</Text>
+							</Link>
 						</Box>
 						<Link to="/">
 							<Button mt={"20px"}>Log Out</Button>
