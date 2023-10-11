@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export const UserBar = () => {
 	const [allUser, setAllUser] = useState([]);
-	const [myAccount, setMyAccount]= useState()
+	const [myAccount, setMyAccount]= useState([])
 
 	const accountsIndex = localStorage.getItem("akun");
 
@@ -14,7 +14,9 @@ export const UserBar = () => {
 				"http://localhost:3000/user"
 			);
 			setMyAccount(responseUser.data[accountsIndex].username)
-			setAllUser(responseUser.data);
+			const user = responseUser.data
+			console.log(user)
+			setAllUser(user);
 		} catch (err) {
 			console.log(err);
 		}
