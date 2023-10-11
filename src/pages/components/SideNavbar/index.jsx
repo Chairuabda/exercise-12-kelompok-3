@@ -20,7 +20,7 @@ export const SideNavbar = () => {
 						justifyContent={"space-between"}
 					>
 						<Box display={"flex"} flexDirection={"column"}>
-							<Link>
+							<Link to="/home">
 								<Text p={"10px"} mb={"5px"}>
 									Home
 								</Text>
@@ -38,11 +38,6 @@ export const SideNavbar = () => {
 							<Link>
 								<Text p={"10px"} mb={"5px"}>
 									Profile
-								</Text>
-							</Link>
-							<Link to="/profileuser">
-								<Text p={"10px"} mb={"5px"}>
-									Profile User
 								</Text>
 							</Link>
 						</Box>
