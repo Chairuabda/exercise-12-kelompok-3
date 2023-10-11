@@ -5,7 +5,7 @@ import {
     FormControl, Input, FormLabel, Button
 } from '@chakra-ui/react'
 
-
+// OKE
 
 export default function Login() {
     const emailRegex = '[a-z0-9]+@[a-z]+.[a-z]{2,3}';
