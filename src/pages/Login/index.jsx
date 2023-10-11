@@ -41,8 +41,10 @@ export const Login = () => {
 		fatchDataLogin();
 	}, []);
 
+	console.log(accounts);
 	const check = (email, password) => {
 		if (allEmail.includes(email) && allPassword.includes(password)) {
+			localStorage.setItem("akun", allEmail.indexOf(email))
 			Navigate("/home");
 		} else if (
 			allEmail.includes(email) &&

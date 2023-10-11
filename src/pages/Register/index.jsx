@@ -88,8 +88,9 @@ export const Register = () => {
 							borderRadius="5px"
 							bgColor="transparent"
 							border="1px solid black"
-							h="25px"
+							h="30px"
 							color="black"
+							pl={"5px"}
 						/>
 					</FormControl>
 					<FormControl
@@ -110,8 +111,9 @@ export const Register = () => {
 							borderRadius="5px"
 							bgColor="transparent"
 							border="1px solid black"
-							h="25px"
+							h="30px"
 							color="black"
+							pl={"5px"}
 						/>
 						{formikRegister.touched.email &&
 							formikRegister.errors.email && (
@@ -139,8 +141,9 @@ export const Register = () => {
 							borderRadius="5px"
 							bgColor="transparent"
 							border="1px solid black"
-							h="25px"
+							h="30px"
 							color="black"
+							pl={"5px"}
 						/>
 						{formikRegister.touched.password &&
 							formikRegister.errors.password && (

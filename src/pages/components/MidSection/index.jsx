@@ -28,7 +28,6 @@ export const MidSection = () => {
 			console.log(err);
 		}
 	};
-// kdjkdjfkdfj
 	const time = () => {
 		const time = new Date();
 		const fromatedTime = time.toLocaleString();

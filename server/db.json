@@ -11,6 +11,24 @@
       "email": "chairu@gmail.com",
       "password": "abdaabda",
       "id": 2
+    },
+    {
+      "username": "Putu",
+      "email": "putu@gmail.com",
+      "password": "putuputu",
+      "id": 3
+    },
+    {
+      "username": "fariz",
+      "email": "fariz@gmail.com",
+      "password": "farizfariz",
+      "id": 4
+    },
+    {
+      "username": "bas",
+      "email": "bas@gmail.com",
+      "password": "ibasibas",
+      "id": 5
     }
   ]
 }
