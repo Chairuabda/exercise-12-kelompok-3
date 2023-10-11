@@ -13,13 +13,16 @@ const tweetScheme = Yup.object().shape({
 export const MidSection = () => {
 	const [allTweet, setAllTweets] = useState([]);
 	const [date, setDates] = useState("");
+	const [myAccount, setMyAccount] = useState()
 
-	const tweets = async (tweet, time) => {
+	const indexAccount = localStorage.getItem("akun")
+
+	const tweets = async (tweet, time, username) => {
 		try {
 			await axios.post("http://localhost:8000/tweet", {
-				// username,
 				tweet,
 				time,
+				username,
 			});
 		} catch (err) {
 			console.log(err);
@@ -37,6 +40,8 @@ export const MidSection = () => {
 			const responseTweet = await axios.get(
 				"http://localhost:8000/tweet"
 			);
+			const responseUser = await axios.get("http://localhost:3000/user")
+			setMyAccount(responseUser.data[indexAccount])
 			setAllTweets(responseTweet.data);
 			time();
 		} catch (err) {
@@ -50,13 +55,13 @@ export const MidSection = () => {
 
 	const formikTweet = useFormik({
 		initialValues: {
-			// username: "",
+			username: "",
 			tweet: "",
 			time: "",
 		},
 		validationSchema: tweetScheme,
 		onSubmit: (values) => {
-			tweets(values.tweet, date);
+			tweets(values.tweet, date, myAccount.username);
 			formikTweet.values.tweet = "";
 		},
 	});
@@ -143,7 +148,7 @@ export const MidSection = () => {
 											h={"30px"}
 										>
 											<Text alignItems={"center"} fontWeight={"600"}>
-												username
+												{items.username}
 											</Text>
 											<Text
 												fontSize={"10px"}

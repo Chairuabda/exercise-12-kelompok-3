@@ -3,8 +3,28 @@ import { SideNavbar } from "../components/SideNavbar";
 import { UserBar } from "../components/UserBar";
 import { MidSection } from "../components/MidSection";
 import Logo from "../../assets/BlackAbstract.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const Home = () => {
+
+	const [myAccount, setMyAccount] = useState()
+
+	const accountsIndex = localStorage.getItem("akun")
+
+	const fatchUser = async () => {
+		try {
+			const responseUser = await axios.get("http://localhost:3000/user")
+			setMyAccount(responseUser.data[accountsIndex])
+		} catch (err) {
+			console.log(err)
+		}
+	}
+
+	useEffect(() => {
+		fatchUser();
+	},[myAccount])
+ 
 	return (
 		<Box
 			w="100vw"
@@ -39,7 +59,7 @@ export const Home = () => {
 						p={"2px 18px"}
 						borderRadius={"20px"}
 					>
-						Username
+						{myAccount?.email}
 					</Box>
 				</Box>
 
