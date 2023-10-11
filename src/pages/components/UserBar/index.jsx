@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 
 export const UserBar = () => {
 	const [allUser, setAllUser] = useState([]);
-	const [myAccount, setMyAccount]= useState([])
-
-	const accountsIndex = localStorage.getItem("akun");
+	
 
 	const fatchData = async () => {
 		try {

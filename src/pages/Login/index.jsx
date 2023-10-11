@@ -5,6 +5,8 @@ import {
 	Button,
 	FormControl,
 	FormLabel,
+	Heading,
+	Image,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -74,6 +76,11 @@ export const Login = () => {
 			justifyContent={"center"}
 			alignItems={"center"}
 			minH={"100vh"}
+			bgImage="url('/src/assets/wickedbackground.svg')"
+			backgroundSize="cover"
+			backgroundRepeat="repeat"
+			width={"100vw"}
+			height={"100vh"}
 		>
 			<Box
 				display={"flex"}
@@ -84,7 +91,9 @@ export const Login = () => {
 				p="30px 50px"
 				borderRadius="10px"
 				color="black"
-				w="300px"
+				w="30rem"
+				h="20rem"
+				
 			>
 				<form onSubmit={formik.handleSubmit}>
 					<Box
@@ -93,8 +102,8 @@ export const Login = () => {
 						justifyContent={"center"}
 						mb={"30px"}
 					>
-						<Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-							<Text fontSize="20px">Login</Text>
+						<Box display={"flex"} direction={"row"} justifyContent={"center"} alignItems={"center"} mt={"3rem"}>
+							<Heading size='lg' direction={'row'}> <Image src='/src/assets/BlackAbstract.png'></Image> MySosmed</Heading>
 						</Box>
 						<FormControl
 							display="flex"
