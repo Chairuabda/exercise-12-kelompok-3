@@ -6,6 +6,8 @@ import {
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
+	Image,
+	Heading
 } from "@chakra-ui/react";
 // import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,6 +15,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Logo from "/src/assets/BlackAbstract.png";
 
 const registerScheme = Yup.object().shape({
 	email: Yup.string()
@@ -55,11 +58,14 @@ export const Register = () => {
 
 	return (
 		<Box
-			display={"flex"}
-			w={"100vw"}
-			justifyContent={"center"}
-			alignItems={"center"}
-			minH={"100vh"}
+		display={"flex"}
+		w={"100vw"}
+		justifyContent={"center"}
+		alignItems={"center"}
+		minH={"100vh"}
+		bgImage="url('/src/assets/wickedbackground.svg')"
+		backgroundSize="cover"
+		backgroundRepeat="repeat"
 		>
 			<Box
 				display={"flex"}
@@ -68,34 +74,46 @@ export const Register = () => {
 				alignItems={"center"}
 				bgColor="#eff0f3"
 				p="30px 50px"
-				borderRadius="10px"
+				borderRadius="20px"
 				color="black"
-				w="300px"
+				w="350px"
+				outline={"9px solid rgba(255, 255, 255, 0.09)"}
+				boxShadow={'0px 6px 13px 3px rgba(64, 15, 104, 0.38)'}
 			>
 				<form onSubmit={formikRegister.handleSubmit}>
 					<Box
 						display={"flex"}
 						flexDirection={"column"}
-						alignItems={"center"}
+						justifyContent={"center"}
+						mb={"30px"}
 					>
-						<Text fontSize="20px">Register</Text>
+								<Box
+							display={"flex"}
+							justifyContent={"center"}
+							alignItems={"center"}
+						>
+						<Box display={"flex"} mt={"2rem"} mb={"2rem"}>
+							<Image src={Logo}></Image>
+							<Heading size="lg" fontWeight={"normal"}>MySosmed</Heading>
+						</Box>
+						</Box>
 						<FormControl
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
-							<FormLabel>Nama</FormLabel>
+							<FormLabel fontSize={"sm"} fontWeight={"medium"}>Nama</FormLabel>
 							<Input
 								type="text"
 								name="username"
 								value={formikRegister.values.username}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
-								pl={"5px"}
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 							/>
 						</FormControl>
 						<FormControl
@@ -106,19 +124,19 @@ export const Register = () => {
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
-							<FormLabel>Email</FormLabel>
+							<FormLabel fontSize={"sm"} fontWeight={"medium"}>Email</FormLabel>
 							<Input
 								type="text"
 								name="email"
 								value={formikRegister.values.email}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
-								pl={"5px"}
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 							/>
 							{formikRegister.touched.email &&
 								formikRegister.errors.email && (
@@ -136,19 +154,19 @@ export const Register = () => {
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
-							<FormLabel>Password</FormLabel>
+							<FormLabel fontSize={"sm"} fontWeight={"medium"}>Password</FormLabel>
 							<Input
 								type="password"
 								name="password"
 								value={formikRegister.values.password}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
-								pl={"5px"}
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 							/>
 							{formikRegister.touched.password &&
 								formikRegister.errors.password && (
@@ -165,7 +183,8 @@ export const Register = () => {
 								textAlign="center"
 								fontSize="16px"
 								justifyContent={"center"}
-								bgColor={"blue.300"}
+								bgColor={"#400f68"}
+								color={"white"}
 							>
 								Register
 							</Button>

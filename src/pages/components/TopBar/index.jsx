@@ -30,6 +30,7 @@ export const TopBar = () => {
 					position={"fixed"}
 					left={"200"}
 					right={"200"}
+					
 				>
 					<Box display={"flex"} alignItems={"center"}>
 						<Image src={Logo} h={"24px"} />

@@ -10,6 +10,7 @@ export const SideNavbar = () => {
 					position={"fixed"}
 					left={"145"}
 					h={"90%"}
+					mt={"40px"}
 				>
 					<Box
 						display="flex"
@@ -21,22 +22,22 @@ export const SideNavbar = () => {
 					>
 						<Box display={"flex"} flexDirection={"column"}>
 							<Link to="/home">
-								<Text p={"10px"} mb={"5px"}>
+								<Text p={"10px"} mb={"5px"} fontSize={"sm"} fontWeight={"medium"}>
 									Home
 								</Text>
 							</Link>
 							<Link>
-								<Text p={"10px"} mb={"5px"}>
+								<Text p={"10px"} mb={"5px"} fontSize={"sm"} fontWeight={"medium"}>
 									Notification
 								</Text>
 							</Link>
 							<Link>
-								<Text p={"10px"} mb={"5px"}>
-									Messaged
+								<Text p={"10px"} mb={"5px"} fontSize={"sm"} fontWeight={"medium"}>
+									Messages
 								</Text>
 							</Link>
 							<Link>
-								<Text p={"10px"} mb={"5px"}>
+								<Text p={"10px"} mb={"5px"} fontSize={"sm"} fontWeight={"medium"}>
 									Profile
 								</Text>
 							</Link>
