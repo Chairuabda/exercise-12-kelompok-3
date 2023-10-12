@@ -1,34 +1,34 @@
 {
   "user": [
     {
-      "username": "Tengku Chairu Abda",
+      "username": "Abda",
       "email": "abda@gmail.com",
       "password": "chairuabda",
       "id": 1
     },
     {
-      "username": "abda",
-      "email": "chairu@gmail.com",
-      "password": "abdaabda",
-      "id": 2
-    },
-    {
-      "username": "Putu",
-      "email": "putu@gmail.com",
-      "password": "putuputu",
-      "id": 3
-    },
-    {
-      "username": "fariz",
+      "username": "Fariz",
       "email": "fariz@gmail.com",
       "password": "farizfariz",
       "id": 4
     },
     {
-      "username": "bas",
+      "username": "Bas",
       "email": "bas@gmail.com",
       "password": "ibasibas",
-      "id": 5
+      "id": 6
+    },
+    {
+      "username": "Putu Late",
+      "email": "putu@gmail.com",
+      "password": "putuputu",
+      "id": 7
+    },
+    {
+      "username": "ryan",
+      "email": "ryan@gmail.com",
+      "password": "12345678",
+      "id": 8
     }
   ]
 }

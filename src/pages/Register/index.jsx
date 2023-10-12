@@ -13,7 +13,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
+// Skema register
 const registerScheme = Yup.object().shape({
 	email: Yup.string()
 		.email("Invalid Email")
@@ -24,22 +26,47 @@ const registerScheme = Yup.object().shape({
 });
 
 export const Register = () => {
-	// const [data, setData] = useState("");
-
+	const [accounts, setAccounts] = useState([]);
 	const Navigate = useNavigate();
 
-	const register = async (username, email, password) => {
+	// Ambil data user yang sudah register
+	const fatchData = async () => {
 		try {
-			await axios.post("http://localhost:3000/user", {
-				username,
-				email,
-				password,
-			});
+			const response = await axios.get("http://localhost:3000/user");
+			setAccounts(response.data);
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
+	useEffect(() => {
+		fatchData();
+	}, [accounts]);
+
+	// Ngeset semua email ke dalam variable allEmail
+	const allEmail = accounts.map((item) => item.email);
+
+
+	// Pengecekan email yang di input oleh user dengan email yang ada di db.json, jika ada yang sama maka akan menjalankan alert email sudah terdaftar, jika berbeda inputan akan dikirim ke db.json, ngeset localstorage, lalu me navigate ke home
+	const register = async (username, email, password) => {
+		try {
+			if (allEmail.includes(email)) {
+				alert("Email Sudah terdaftar");
+			} else {
+				await axios.post("http://localhost:3000/user", {
+					username,
+					email,
+					password,
+				});
+				localStorage.setItem("akun", allEmail.length);
+				Navigate("/home");
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	// menginisialisasi values dan loginschame, lalu ketika di submit, onsubmit akan dijalan kan memanggil function register untuk mengirimkan username, email dan password yang di input user
 	const formikRegister = useFormik({
 		initialValues: {
 			username: "",
@@ -49,7 +76,6 @@ export const Register = () => {
 		validationSchema: registerScheme,
 		onSubmit: (values) => {
 			register(values.username, values.email, values.password);
-			Navigate("/home");
 		},
 	});
 
@@ -60,6 +86,9 @@ export const Register = () => {
 			justifyContent={"center"}
 			alignItems={"center"}
 			minH={"100vh"}
+			bgImage="url('/src/assets/wickedbackground.svg')"
+			backgroundSize="cover"
+			backgroundRepeat="repeat"
 		>
 			<Box
 				display={"flex"}
@@ -68,21 +97,25 @@ export const Register = () => {
 				alignItems={"center"}
 				bgColor="#eff0f3"
 				p="30px 50px"
-				borderRadius="10px"
+				borderRadius="20px"
 				color="black"
-				w="300px"
+				w="350px"
+				outline={"9px solid rgba(255, 255, 255, 0.09)"}
+				boxShadow={'0px 6px 13px 3px rgba(64, 15, 104, 0.38)'}
 			>
 				<form onSubmit={formikRegister.handleSubmit}>
 					<Box
 						display={"flex"}
 						flexDirection={"column"}
-						alignItems={"center"}
+						justifyContent={"center"}
+						mb={"30px"}
 					>
 						<Text fontSize="20px">Register</Text>
 						<FormControl
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
 							<FormLabel>Nama</FormLabel>
 							<Input
@@ -90,11 +123,11 @@ export const Register = () => {
 								name="username"
 								value={formikRegister.values.username}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 								pl={"5px"}
 							/>
 						</FormControl>
@@ -106,6 +139,7 @@ export const Register = () => {
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
 							<FormLabel>Email</FormLabel>
 							<Input
@@ -113,11 +147,11 @@ export const Register = () => {
 								name="email"
 								value={formikRegister.values.email}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 								pl={"5px"}
 							/>
 							{formikRegister.touched.email &&
@@ -136,6 +170,7 @@ export const Register = () => {
 							display="flex"
 							flexDirection="column"
 							justifyContent="start"
+							mb={"1rem"}
 						>
 							<FormLabel>Password</FormLabel>
 							<Input
@@ -143,11 +178,11 @@ export const Register = () => {
 								name="password"
 								value={formikRegister.values.password}
 								onChange={formikRegister.handleChange}
-								borderRadius="5px"
+								borderRadius="4px"
 								bgColor="transparent"
-								border="1px solid black"
-								h="30px"
-								color="black"
+								border="1px solid #1A008F"
+								h="35px"
+								color="gray.700"
 								pl={"5px"}
 							/>
 							{formikRegister.touched.password &&
@@ -165,7 +200,8 @@ export const Register = () => {
 								textAlign="center"
 								fontSize="16px"
 								justifyContent={"center"}
-								bgColor={"blue.300"}
+								bgColor={"#400f68"}
+								color={"white"}
 							>
 								Register
 							</Button>

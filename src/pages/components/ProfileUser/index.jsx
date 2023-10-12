@@ -12,6 +12,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { SideNavbar } from "../SideNavbar";
 import { TopBar } from "../TopBar";
+import { UserMinus } from "@phosphor-icons/react"
 
 export const ProfileUser = () => {
 	const [allUser, setAllUser] = useState([]);
@@ -30,7 +31,7 @@ export const ProfileUser = () => {
 
 	useEffect(() => {
 		fatchData();
-	}, []);
+	}, [allUser]);
 
 	return (
 		<Box
@@ -63,9 +64,10 @@ export const ProfileUser = () => {
 						<Table variant="simple" colorScheme="teal">
 							<Thead>
 								<Tr>
-									<Th>Username</Th>
-									<Th>Email</Th>
-									<Th>Password</Th>
+									<Th textAlign={"center"}>Username</Th>
+									<Th textAlign={"center"}>Email</Th>
+									<Th textAlign={"center"}>Password</Th>
+									<Th textAlign={"center"}>Dellet Account</Th>
 								</Tr>
 							</Thead>
 							{allUser?.length > 0 ? (
@@ -73,9 +75,10 @@ export const ProfileUser = () => {
 									return (
 										<Tbody key={index}>
 											<Tr>
-												<Td>{user.username}</Td>
-												<Td>{user.email}</Td>
-												<Td>{user.password}</Td>
+												<Td textAlign={"center"}>{user.username}</Td>
+												<Td textAlign={"center"}>{user.email}</Td>
+												<Td textAlign={"center"}>{user.password}</Td>
+												<Td display={"flex"} justifyContent={"center"}><UserMinus size={32} cursor={"pointer"} onClick={(() => {axios.delete(`http://localhost:3000/user/${user.id}`)})} /></Td>
 											</Tr>
 										</Tbody>
 									);

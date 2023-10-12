@@ -13,10 +13,11 @@ export const Home = () => {
 			w="100vw"
 			minH={"100vh"}
 			display={"flex"}
-			bgColor={"#eff0f3"}
+			// bgColor={"#eff0f3"}
 			justifyContent={"center"}
 			color={"black"}
 			overflow={"hidden"}
+			bgImage="url('/src/assets/wickedbackground.svg')"
 		>
 			<Box
 				display="flex"

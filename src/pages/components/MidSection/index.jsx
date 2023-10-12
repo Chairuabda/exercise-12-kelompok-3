@@ -4,7 +4,13 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
-import { Image, Microphone, MapPin } from "@phosphor-icons/react";
+import {
+	Image,
+	Microphone,
+	MapPin,
+	XCircle,
+	UserCircle,
+} from "@phosphor-icons/react";
 
 const tweetScheme = Yup.object().shape({
 	tweet: Yup.string().required(),
@@ -13,9 +19,9 @@ const tweetScheme = Yup.object().shape({
 export const MidSection = () => {
 	const [allTweet, setAllTweets] = useState([]);
 	const [date, setDates] = useState("");
-	const [myAccount, setMyAccount] = useState()
+	const [myAccount, setMyAccount] = useState();
 
-	const indexAccount = localStorage.getItem("akun")
+	const indexAccount = localStorage.getItem("akun");
 
 	const tweets = async (tweet, time, username) => {
 		try {
@@ -31,8 +37,8 @@ export const MidSection = () => {
 
 	const time = () => {
 		const time = new Date();
-		const fromatedTime = time.toLocaleString();
-		setDates(fromatedTime);
+		const foromatedTime = time.toLocaleString();
+		setDates(foromatedTime);
 	};
 
 	const fatchData = async () => {
@@ -40,9 +46,11 @@ export const MidSection = () => {
 			const responseTweet = await axios.get(
 				"http://localhost:8000/tweet"
 			);
-			const responseUser = await axios.get("http://localhost:3000/user")
-			setMyAccount(responseUser.data[indexAccount])
+			const responseUser = await axios.get(
+				"http://localhost:3000/user"
+			);
 			setAllTweets(responseTweet.data);
+			setMyAccount(responseUser.data[indexAccount]);
 			time();
 		} catch (err) {
 			console.log(err);
@@ -68,14 +76,16 @@ export const MidSection = () => {
 	return (
 		<Box
 			minH={"100vh"}
-			bgColor={"white"}
 			w={"48%"}
-			shadow={"base"}
+			boxShadow={'0px 6px 13px 3px rgba(255, 255, 255, 0.2)'}
+			outline={"3px solid rgba(255, 255, 255, 0.1)"}
 			borderRadius={"10px"}
+			// border={"1px solid white"}
 			position={"relative"}
 			left={"-90"}
-            mb={"30px"}
-            pb={"50px"}
+			mb={"30px"}
+			pb={"50px"}
+			color={"white"}
 		>
 			<Box
 				display={"flex"}
@@ -115,11 +125,11 @@ export const MidSection = () => {
 								alignItems={"center"}
 							>
 								<Box display={"flex"}>
-									<Image size={26} />
+									<Image size={26} cursor={"pointer"} />
 									<Box m={"0px 15px"}>
-										<Microphone size={26} />
+										<Microphone size={26} cursor={"pointer"} />
 									</Box>
-									<MapPin size={26} />
+									<MapPin size={26} cursor={"pointer"} />
 								</Box>
 								<Button justifyContent={"end"} type="submit">
 									Posting
@@ -129,7 +139,7 @@ export const MidSection = () => {
 					</form>
 				</Box>
 
-				<Box w={"80%"} borderTop={"1px solid black"}>
+				<Box w={"80%"} borderTop={"1px solid white"}>
 					{allTweet?.length > 0 ? (
 						allTweet
 							.map((items, index) => {
@@ -138,25 +148,54 @@ export const MidSection = () => {
 										key={index}
 										borderRadius={"10px"}
 										mt={"10px"}
-										p={"10px 30px"}
+										p={"10px 30px 0px 60px"}
 										boxShadow={"md"}
+										bgColor={"rgba(255, 255, 255, 0.3)"}
 									>
 										<Box
 											display={"flex"}
-											justifyContent={"start"}
+											justifyContent={"space-between"}
 											alignItems={"center"}
 											h={"30px"}
 										>
-											<Text alignItems={"center"} fontWeight={"600"}>
-												{items.username}
-											</Text>
-											<Text
-												fontSize={"10px"}
-												alignItems={"end"}
-												ml={"30px"}
+											<Box
+												display={"flex"}
+												justifyContent={"start"}
+												alignItems={"center"}
+												h={"30px"}
+												mt={"10px"}
+												ml={"-40px"}
 											>
-												{items.time}
-											</Text>
+												{" "}
+												{/* tambah ini */}
+												<UserCircle size={30} />
+												<Text
+													alignItems={"center"}
+													fontWeight={"600"}
+													ml={"5px"}
+												>
+													@{items.username}
+												</Text>
+												<Text
+													fontSize={"10px"}
+													alignItems={"end"}
+													ml={"30px"}
+												>
+													{items.time}
+												</Text>
+											</Box>
+											<Box position={"relative"} right={"-5"}>
+												<XCircle
+													size={18}
+													cursor={"pointer"}
+													onClick={() => {
+														axios.delete(
+															`http://localhost:8000/tweet/${items.id}`
+														);
+													}}
+												/>{" "}
+												{/* tambah ini */}
+											</Box>
 										</Box>
 										<Box p={"20px 0"}>
 											<Text textAlign={"justify"}>{items.tweet}</Text>
@@ -166,7 +205,11 @@ export const MidSection = () => {
 							})
 							.reverse()
 					) : (
-						<Box>
+						<Box
+							display={"flex"}
+							justifyContent={"center"}
+							mt={"50px"}
+						>
 							<Text>
 								Postingan masih kosong, ayo bagikan postingan mu
 							</Text>

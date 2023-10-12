@@ -2,9 +2,10 @@ import { Box, Text, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserCircle } from "@phosphor-icons/react";
 
 export const UserBar = () => {
-	const [allUser, setAllUser] = useState([]);
+	const [allUser, setAllUser] = useState([]); // tambah ini
 
 	const fatchData = async () => {
 		try {
@@ -12,7 +13,7 @@ export const UserBar = () => {
 				"http://localhost:3000/user"
 			);
 			const user = responseUser.data;
-			setAllUser(user);
+			setAllUser(user.map((item) => item.username));
 		} catch (err) {
 			console.log(err);
 		}
@@ -21,6 +22,10 @@ export const UserBar = () => {
 	useEffect(() => {
 		fatchData();
 	}, []);
+
+	const indexAccount = localStorage.getItem("akun") // tambah ini
+	const filterUser = allUser.filter((item) => item !== allUser[indexAccount])  // tambah ini
+
 	return (
 		<Box
 			w={"25%"}
@@ -30,13 +35,14 @@ export const UserBar = () => {
 			position={"fixed"}
 			right={"145"}
 			overflow={"hidden"}
+			color={"white"}
 		>
 			<Box
 				display={"flex"}
 				flexDirection={"column"}
 				h={"fit-content"}
 				justifyContent={"center"}
-				bgColor={"white"}
+				// bgColor={"white"}
 				borderRadius={"20px"}
 				w={"90%"}
 				alignItems={"center"}
@@ -48,18 +54,22 @@ export const UserBar = () => {
 				</Box>
 
 				{allUser?.length > 0 ? (
-					allUser.map((user, index) => {
+					filterUser.map((user, index) => {
+						{/* ganti ini */}
 						return (
 							<Box
-								bgColor={"#eff0f3"}
+								display={"flex"}
+								bgColor={"rgba(255, 255, 255, 0.3)"}
 								p={"10px"}
 								w={"75%"}
 								borderRadius={"5px"}
-								color={"black"}
+								color={"white"}
 								m={"2px"}
 								key={index}
-							>
-								<Text m={"0"}>{user.username}</Text>
+								alignItems={"center"}
+							> {/* tambah ini */}
+								<UserCircle size={30} />
+								<Text m={"0"} fontSize={"14px"}>@{user}</Text> {/* ganti ini */}
 							</Box>
 						);
 					})
@@ -72,6 +82,7 @@ export const UserBar = () => {
 							variant={"link"}
 							border={"none"}
 							_focus={{ border: "none", outline: "none" }}
+							color={"white"}
 						>
 							see more
 						</Button>
