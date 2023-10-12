@@ -39,6 +39,8 @@ export const ProfileUser = () => {
 			h={"100vh"}
 			display={"flex"}
 			justifyContent={"center"}
+			bgImage="url('/src/assets/wickedbackground.svg')"
+			color={"white"}
 		>
 			<TopBar />
 			<Box mt={"50px"}>
@@ -60,14 +62,14 @@ export const ProfileUser = () => {
                     
 				>
 					{/* <Text>Profile User</Text> */}
-					<TableContainer w={"800px"}>
+					<TableContainer w={"800px"} >
 						<Table variant="simple" colorScheme="teal">
 							<Thead>
-								<Tr>
-									<Th textAlign={"center"}>Username</Th>
-									<Th textAlign={"center"}>Email</Th>
-									<Th textAlign={"center"}>Password</Th>
-									<Th textAlign={"center"}>Dellet Account</Th>
+								<Tr >
+									<Th textAlign={"center"} color={"white"}>Username</Th>
+									<Th textAlign={"center"} color={"white"}>Email</Th>
+									<Th textAlign={"center"} color={"white"}>Password</Th>
+									<Th textAlign={"center"} color={"white"}>Dellet Account</Th>
 								</Tr>
 							</Thead>
 							{allUser?.length > 0 ? (
